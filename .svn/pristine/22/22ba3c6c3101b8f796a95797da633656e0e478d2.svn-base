@@ -1,0 +1,39 @@
+<template>
+  <div class="Init" id="Init">
+    <img :src="imitImg" class="customizeImg" @click="replace()"/>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      imitImg: 'static/img/page/1.jpg'
+    }
+  },
+  created (){
+  },
+  mounted(){
+//    alert($(window).height()); //浏览器当前窗口可视区域高度
+//    alert($(document).height()); //浏览器当前窗口文档的高度
+//    alert($(document.body).height());//浏览器当前窗口文档body的高度
+//    alert($(document.body).outerHeight());//浏览器当前窗口文档body的总高度 包括border padding margin
+//    alert($(document).getElementById('Init'));
+    window.onload=function(){
+      var swiper = document.getElementById("Init");
+      var scale = window.screen.height / window.screen.width;
+      swiper.style.height = document.body.clientWidth * scale + "px";
+    }
+  },
+  methods:{
+    replace(){
+      let vue = this
+      vue.$router.push({name:'home'})
+    }
+  }
+}
+</script>
+<style>
+  *{margin: 0;padding: 0;}
+  .customizeImg{height: 100%;width: 100%;font-size: 0}
+</style>

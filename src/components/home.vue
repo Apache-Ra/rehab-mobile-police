@@ -1,0 +1,54 @@
+<template>
+    <div id="Home">
+      <div class="swiper-container" id="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" v-for="(item, key) in imageList"><img
+             :src="item.url" class="customizeImg"
+          ></div>
+        </div>
+      </div>
+    </div>
+</template>
+<script>
+  import Swiper from '../../static/js/swiper.min'
+
+  export default {
+        components: {},
+        data() {
+            return {
+              mySwiper: '',
+              imageList: []
+            }
+        },
+        created() {
+          let vue = this
+          let item = 1
+          let ImgUrl = 'static/img/page/'
+          for(item ;item <2; item ++ ){
+            let obj = {
+              url: ImgUrl+item+'.jpg'
+            }
+            vue.imageList.push(obj)
+          }
+        },
+        mounted(){
+          let vue = this
+
+
+          let swiper = document.getElementById("swiper");
+          let scale = window.screen.height / window.screen.width;
+          swiper.style.height = document.body.clientWidth * scale + "px";
+
+          vue.mySwiper = new Swiper('.swiper-container',{
+            direction: 'horizontal',
+            loop: true,
+          });
+        },
+        methods: {}
+    }
+</script>
+<style>
+  @import '../assets/css/swiper.min.css';
+  * {margin: 0; padding: 0;}
+  .customizeImg{width: 100%;max-height:100%;overflow: hidden;font-size: 0;border:none;}
+</style>
